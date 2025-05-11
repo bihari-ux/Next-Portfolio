@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { Volume2, VolumeX } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
 
 const Modal = ({ onClose, toggle }) => {
@@ -39,17 +39,19 @@ const Sound = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const handleFirstUserInteraction = () => {
+  // Wrapping handleFirstUserInteraction with useCallback to avoid unnecessary re-renders
+  const handleFirstUserInteraction = useCallback(() => {
     const musicConsent = localStorage.getItem("musicConsent");
     if (musicConsent === "true" && !isPlaying) {
       audioRef.current.play();
       setIsPlaying(true);
     }
 
+    // Cleanup: Remove event listeners
     ["click", "keydown", "touchstart"].forEach((event) =>
       document.removeEventListener(event, handleFirstUserInteraction)
     );
-  };
+  }, [isPlaying]); // Dependency array now includes isPlaying
 
   useEffect(() => {
     const consent = localStorage.getItem("musicConsent");
@@ -63,6 +65,7 @@ const Sound = () => {
       setIsPlaying(consent === "true");
 
       if (consent === "true") {
+        // Attach event listeners
         ["click", "keydown", "touchstart"].forEach((event) =>
           document.addEventListener(event, handleFirstUserInteraction)
         );
@@ -70,16 +73,24 @@ const Sound = () => {
     } else {
       setShowModal(true);
     }
-  }, []);
+
+    // Cleanup: Remove event listeners on component unmount
+    return () => {
+      ["click", "keydown", "touchstart"].forEach((event) =>
+        document.removeEventListener(event, handleFirstUserInteraction)
+      );
+    };
+  }, [handleFirstUserInteraction]); // Adding handleFirstUserInteraction to the dependency array
 
   const toggle = () => {
     const newState = !isPlaying;
-    setIsPlaying(!isPlaying);
+    setIsPlaying(newState);
     newState ? audioRef.current.play() : audioRef.current.pause();
     localStorage.setItem("musicConsent", String(newState));
     localStorage.setItem("consentTime", new Date().toISOString());
     setShowModal(false);
   };
+
   return (
     <div className="fixed top-4 right-2.5 xs:right-4 z-50 group">
       {showModal && (
