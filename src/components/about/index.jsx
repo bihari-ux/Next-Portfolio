@@ -12,11 +12,52 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import { SiTailwindcss, SiExpress, SiMongodb } from "react-icons/si";
-
 import Link from "next/link";
 import ItemLayout from "./ItemLayout";
 
-const AboutDetails = () => {
+function About() {
+  // The list of icons you want to display
+  const icons = [
+    "appwrite",
+    "aws",
+    "babel",
+    "bootstrap",
+    "cloudflare",
+    "css",
+    "d3",
+    "docker",
+    "figma",
+    "firebase",
+    "gatsby",
+    "git",
+    "github",
+    "graphql",
+    "html",
+    "ipfs",
+    "js",
+    "jquery",
+    "kubernetes",
+    "linux",
+    "mongodb",
+    "mysql",
+    "netlify",
+    "nextjs",
+    "nodejs",
+    "npm",
+    "postgres",
+    "react",
+    "redux",
+    "replit",
+    "sass",
+    "supabase",
+    "tailwind",
+    "threejs",
+    "vercel",
+    "vite",
+    "vscode",
+    "yarn",
+  ];
+
   const githubUsername = "bihari-ux";
 
   return (
@@ -62,10 +103,7 @@ const AboutDetails = () => {
 
         {/* Top Languages */}
         <ItemLayout className="col-span-full sm:col-span-6 md:col-span-4 !p-0">
-          <h3 className="text-center font-semibold text-lg md:text-xl mb-4">
-            &quot; Languages &quot;
-          </h3>
-          <div className="grid grid-cols-5 gap-4 justify-center">
+          <div className="flex flex-wrap justify-center gap-4">
             {[
               { icon: FaHtml5, label: "HTML", color: "text-orange-500" },
               { icon: FaCss3Alt, label: "CSS", color: "text-blue-500" },
@@ -87,10 +125,10 @@ const AboutDetails = () => {
             ].map(({ icon: Icon, label, color }, i) => (
               <div
                 key={i}
-                className="text-center flex flex-col items-center justify-between h-32"
+                className="w-1/3 sm:w-1/4 md:w-1/3 lg:w-1/4 xl:w-1/5 text-center flex flex-col items-center justify-center h-32 p-2 rounded-xl hover:shadow-md transition"
               >
                 <Icon className={`${color} text-4xl`} />
-                <p className="mt-2 text-xs sm:text-sm">&quot; {label} &quot;</p>
+                <p className="mt-2 text-xs sm:text-sm font-medium">{label}</p>
               </div>
             ))}
           </div>
@@ -98,9 +136,6 @@ const AboutDetails = () => {
 
         {/* Social Media */}
         <ItemLayout className="col-span-full md:col-span-8 !p-4">
-          <h3 className="text-center font-semibold text-lg md:text-xl mb-12">
-            Social Media
-          </h3>
           <div className="flex justify-center gap-6 mb-6 text-5xl">
             <a
               href="https://wa.me/9262645718"
@@ -145,21 +180,27 @@ const AboutDetails = () => {
           </div>
         </ItemLayout>
 
-        {/* Skill Icons Section */}
+        {/* Skill Icons */}
         <ItemLayout className="col-span-full">
-          <image
-            className="w-full h-auto"
-            src={`https://skillicons.dev/icons?i=appwrite,aws,babel,bootstrap,cloudflare,css,d3,docker,figma,firebase,gatsby,git,github,graphql,html,ipfs,js,jquery,kubernetes,linux,mongodb,mysql,netlify,nextjs,nodejs,npm,postgres,react,redux,replit,sass,supabase,tailwind,threejs,vercel,vite,vscode,yarn`}
-            alt="Skills"
-            loading="lazy"
-          />
+          <div className="flex flex-wrap justify-center gap-4">
+            {icons.map((icon, index) => (
+              <div
+                key={index}
+                className="w-1/5 sm:w-1/6 md:w-1/6 lg:w-1/12 xl:w-1/12 flex justify-center"
+              >
+                <img
+                  className="w-12 h-12 object-contain" // Adjusted size here
+                  src={`https://skillicons.dev/icons?i=${icon}`}
+                  alt={icon}
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
         </ItemLayout>
 
         {/* Thoughts & GitHub Streak */}
         <ItemLayout className="col-span-full md:col-span-6 !p-0">
-          <h3 className="text-center text-light font-semibold text-lg md:text-xl mb-12">
-            Thoughts
-          </h3>
           <div className="text-center mb-6">
             <p className="text-md sm:text-lg font-semibold text-white-700">
               &quot;Consistency is the key to success. Keep your streak alive,
@@ -169,23 +210,19 @@ const AboutDetails = () => {
               &quot;Small daily improvements lead to stunning results.&quot;
             </p>
           </div>
-          {/* Optional: GitHub streak stats image or component */}
         </ItemLayout>
 
         {/* Team Work Section */}
         <ItemLayout className="col-span-full md:col-span-6 !p-0">
-          <h3 className="text-center font-semibold text-lg md:text-xl mb-6">
-            Team Work
-          </h3>
           <p className="text-center mb-6 text-sm sm:text-base text-blue-600 max-w-3xl mx-auto px-4">
-            &quot; This repositor Nextjs contentlayer blog showcases our
-            collaborative efforts in building a modern blog with Next js and
-            Contentlayer The project highlights our collective skills in
-            software development Check out our teams progress! &quot;
+            &quot; This repository Nextjs contentlayer blog showcases our
+            collaborative efforts in building a modern blog with Next.js and
+            Contentlayer. The project highlights our collective skills in
+            software development. Check out our team's progress! &quot;
           </p>
           <div className="text-center">
             <a
-              href="https://github.com/bihari-ux/Nextjs-contentlayer-blog"
+              href="https://babycare-31o8.onrender.com"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-4 text-white bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 transition"
@@ -197,6 +234,6 @@ const AboutDetails = () => {
       </div>
     </section>
   );
-};
+}
 
-export default AboutDetails;
+export default About;
