@@ -188,7 +188,7 @@ function About() {
                 key={index}
                 className="w-1/5 sm:w-1/6 md:w-1/6 lg:w-1/12 xl:w-1/12 flex justify-center"
               >
-                <img
+                <image
                   className="w-12 h-12 object-contain" // Adjusted size here
                   src={`https://skillicons.dev/icons?i=${icon}`}
                   alt={icon}
@@ -218,7 +218,7 @@ function About() {
             &quot; This repository Nextjs contentlayer blog showcases our
             collaborative efforts in building a modern blog with Next.js and
             Contentlayer. The project highlights our collective skills in
-            software development. Check out our team's progress! &quot;
+            software development. Check out our team&apos;s progress! &quot;
           </p>
           <div className="text-center">
             <a
