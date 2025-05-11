@@ -14,49 +14,13 @@ import {
 import { SiTailwindcss, SiExpress, SiMongodb } from "react-icons/si";
 import Link from "next/link";
 import ItemLayout from "./ItemLayout";
+import Image from "next/image";
+
+
+
 
 function About() {
   // The list of icons you want to display
-  const icons = [
-    "appwrite",
-    "aws",
-    "babel",
-    "bootstrap",
-    "cloudflare",
-    "css",
-    "d3",
-    "docker",
-    "figma",
-    "firebase",
-    "gatsby",
-    "git",
-    "github",
-    "graphql",
-    "html",
-    "ipfs",
-    "js",
-    "jquery",
-    "kubernetes",
-    "linux",
-    "mongodb",
-    "mysql",
-    "netlify",
-    "nextjs",
-    "nodejs",
-    "npm",
-    "postgres",
-    "react",
-    "redux",
-    "replit",
-    "sass",
-    "supabase",
-    "tailwind",
-    "threejs",
-    "vercel",
-    "vite",
-    "vscode",
-    "yarn",
-  ];
 
   const githubUsername = "bihari-ux";
 
@@ -68,7 +32,7 @@ function About() {
           <h2 className="text-xl md:text-2xl text-left w-full capitalize">
             MERN Full Stack Developer
           </h2>
-          <p className="font-light text-xs sm:text-sm md:text-base">
+          <p className="font-light text-xs sm:text-sm">
             &quot; I’m <strong>Bihari Kumar Rawat</strong>, a passionate MERN
             Full Stack Web Developer crafting modern digital experiences with
             precision and creativity. My journey into web development is powered
@@ -180,24 +144,7 @@ function About() {
           </div>
         </ItemLayout>
 
-        {/* Skill Icons */}
-        <ItemLayout className="col-span-full">
-          <div className="flex flex-wrap justify-center gap-4">
-            {icons.map((icon, index) => (
-              <div
-                key={index}
-                className="w-1/5 sm:w-1/6 md:w-1/6 lg:w-1/12 xl:w-1/12 flex justify-center"
-              >
-                <image
-                  className="w-12 h-12 object-contain" // Adjusted size here
-                  src={`https://skillicons.dev/icons?i=${icon}`}
-                  alt={icon}
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-        </ItemLayout>
+      
 
         {/* Thoughts & GitHub Streak */}
         <ItemLayout className="col-span-full md:col-span-6 !p-0">
